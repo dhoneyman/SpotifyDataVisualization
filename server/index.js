@@ -6,7 +6,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
-console.log(process.env.CLIENT_ID);
+// console.log(process.env.CLIENT_ID);
 
 const app = express();
 
@@ -58,22 +58,19 @@ app.get('/callback', (req, res) => {
         .then(response => {
             if (response.status === 200) {
 
-                const { access_token, token_type } = response.data;
+                const { access_token, token_type, refresh_token } = response.data;
 
-                axios.get('https://api.spotify.com/v1/me', {
-                    headers: {
-                        Authorization: `${token_type} ${access_token}`
-                    }
+                const queryParams = querystring.stringify({
+                    access_token,
+                    refresh_token
                 })
-                    .then(response => {
-                        res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
-                    })
-                    .catch(error => {
-                        res.send(error);
-                    });
+
+                //redirect to react app
+                res.redirect(`http://localhost:3000/?${queryParams}`)
+                //pass along tokens and query params
 
             } else {
-                res.send(response);
+                res.redirect(`/?${querystring.stringify({error: 'invalid_token'})}`);
             }
         })
         .catch(error => {
