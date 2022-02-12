@@ -44,7 +44,7 @@ const refreshToken = async () => {
             console.error('no refresh token available');
             logout();
         }
-        const { data } = await axios.get(`/refresh_token?refesh_toek=${LOCALSTORAGE_VALUES.refreshToken}`);
+        const { data } = await axios.get(`/refresh_token?refresh_token=${LOCALSTORAGE_VALUES.refreshToken}`);
 
         window.localStorage.setItem(LOCALSTORAGE_KEYS.accessToken, data.access_token);
         window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
@@ -98,4 +98,12 @@ axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
 axios.defaults.headers['Content-Type'] = 'application/json';
 
 export const getCurrentUserProfile = () => axios.get('/me');
+
+export const getCurrentUserPlaylists = (limit = 20) => {
+    return axios.get(`/me/playlists?limit=${limit}`);
+};
+
+export const getTopArtists = (time_range = 'short_term') => {
+    return axios.get(`/me/top/artists?time_range=${time_range}`);
+};
 
