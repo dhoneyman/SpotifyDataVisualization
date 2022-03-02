@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { GlobalStyle } from './styles';
 import { useState, useEffect } from 'react';
 import { catchErrors } from './utils';
-import { Login, Profile } from './pages';
+import { Login, Profile, TopArtists } from './pages';
 import {
   BrowserRouter as Router,
   Switch,
@@ -76,7 +76,7 @@ function App() {
 
            <Switch>
              <Route path="/top-artists">
-               {/* <h1>Top Artists</h1> */}
+               <TopArtists />
              </Route>
              <Route path="/top-tracks">
                {/* <h1>Top Tracks</h1> */}
