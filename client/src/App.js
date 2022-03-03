@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { GlobalStyle } from './styles';
 import { useState, useEffect } from 'react';
 import { catchErrors } from './utils';
-import { Login, Profile, TopArtists } from './pages';
+import { Login, Profile, TopArtists, TopTracks, Playlists, Playlist } from './pages';
 import {
   BrowserRouter as Router,
   Switch,
@@ -69,30 +69,30 @@ function App() {
 
           <Login />
         ) : (
-          <> 
-          <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton>
-           <Router>
-           <ScrollToTop />
+          <>
+            <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton>
+            <Router>
+              <ScrollToTop />
 
-           <Switch>
-             <Route path="/top-artists">
-               <TopArtists />
-             </Route>
-             <Route path="/top-tracks">
-               {/* <h1>Top Tracks</h1> */}
-             </Route>
-             <Route path="/playlists/:id">
-               {/* <h1>Playlist</h1> */}
-             </Route>
-             <Route path="/playlists">
-               {/* <h1>Playlists</h1> */}
-             </Route>
-             <Route path="/">
-                <Profile />
-             </Route>
-           </Switch>
-         </Router>
-        </>
+              <Switch>
+                <Route path="/top-artists">
+                  <TopArtists />
+                </Route>
+                <Route path="/top-tracks">
+                  <TopTracks />
+                </Route>
+                <Route path="/playlists/:id">
+                  <Playlist />
+                </Route>
+                <Route path="/playlists">
+                <Playlists />
+                </Route>
+                <Route path="/">
+                  <Profile />
+                </Route>
+              </Switch>
+            </Router>
+          </>
         )}
       </header>
     </div>

@@ -111,4 +111,9 @@ export const getTopTracks = (time_range = 'short_term') => {
     return axios.get(`/me/top/tracks?time_range=${time_range}`);
 };
 
+export const getPlaylistById = playlist_id => {
+    return axios.get(`/playlists/${playlist_id}`);
+};
+
+
 
