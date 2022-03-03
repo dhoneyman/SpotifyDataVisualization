@@ -115,5 +115,8 @@ export const getPlaylistById = playlist_id => {
     return axios.get(`/playlists/${playlist_id}`);
 };
 
+export const getAudioFeaturesForTracks = ids => {
+    return axios.get(`/audio-features?ids=/${ids}`);
+};
 
 
