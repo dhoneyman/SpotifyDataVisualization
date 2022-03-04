@@ -1,6 +1,6 @@
+import styled from 'styled-components/macro';
 import logo from './logo.svg';
 import { accessToken, logout, getCurrentUserProfile } from './spotify'
-import styled from 'styled-components/macro';
 import { GlobalStyle } from './styles';
 import { useState, useEffect } from 'react';
 import { catchErrors } from './utils';
